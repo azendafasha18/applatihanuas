@@ -19,6 +19,7 @@ final class FirstInit extends AbstractMigration
             ->addIndex('email', Index::TYPE_UNIQUE)
             ->create();
 
+    
         $this->table('post')
             ->addColumn('id', 'integer', ['autoincrement' => true])
             ->addColumn('user_id', 'integer')
@@ -27,24 +28,6 @@ final class FirstInit extends AbstractMigration
             ->addColumn('updated_at', 'datetime', ['null' => true])
             ->addForeignKey('user_id', 'user', 'id', 'restrict', 'no action')
             ->create();
-
-        $this->insert('user', [
-            [
-                'username' => 'luffy',
-                'email' => 'luffy@admin.com',
-                'created_at' => date('Y-m-d'),
-            ],
-            [
-                'username' => 'zorro',
-                'email' => 'zorro@admin.com',
-                'created_at' => date('Y-m-d'),
-            ],
-            [
-                'username' => 'sanji',
-                'email' => 'sanji@admin.com',
-                'created_at' => date('Y-m-d'),
-            ],
-        ]);
     }
 
     protected function down(): void
